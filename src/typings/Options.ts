@@ -69,6 +69,7 @@ export const getOptions = async (): Promise<Options> => {
     const customTitle = getInput('custom-title');
     const coverageFile = getInput('coverage-file');
     const baseCoverageFile = getInput('base-coverage-file');
+    const reportPath = getInput('report-path');
 
     try {
         const options: Options = (await optionSchema.validate({

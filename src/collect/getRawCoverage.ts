@@ -1,6 +1,7 @@
 import { join } from 'path';
 
 import { exec } from '@actions/exec';
+import { getInput } from '@actions/core';
 import { readFile, rmdir } from 'fs-extra';
 
 import { REPORT_PATH } from '../constants/REPORT_PATH';
@@ -80,15 +81,19 @@ export const getRawCoverage = async (
         }
     }
 
+    const reportFile = getInput('report-file');
+    console.log("reportFile", reportFile)
+    console.log("get path")
+    console.log("Path:", joinPaths(workingDirectory, reportFile || REPORT_PATH))
     try {
         const outBuff = await readFile(
-            joinPaths(workingDirectory, REPORT_PATH)
+            joinPaths(workingDirectory, reportFile || REPORT_PATH)
         );
         return outBuff.toString();
     } catch (error) {
         console.error(
             'Could not read report file located at',
-            joinPaths(workingDirectory, REPORT_PATH),
+            joinPaths(workingDirectory, reportFile || REPORT_PATH),
             error
         );
 

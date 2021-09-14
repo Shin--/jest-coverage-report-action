@@ -44,6 +44,9 @@ inputs:
     base-coverage-file:
         required: false
         description: Path to the report.json file to compare against. This should be from the branch the PR is merging into.
+    report-file:
+        required: false
+        description: Path to the report.json file to compare against. This should be from the branch the PR is merging into.
 runs:
     using: composite
     steps:
@@ -60,4 +63,4 @@ runs:
               INPUT_SKIP-STEP: ${{ inputs.skip-step }}
               INPUT_CUSTOM-TITLE: ${{ inputs.custom-title }}
               INPUT_COVERAGE-FILE: ${{ inputs.coverage-file }}
-              INPUT_BASE-COVERAGE-FILE: ${{ inputs.base-coverage-file }}
+              INPUT_REPORT-FILE: ${{ inputs.report-file }}
